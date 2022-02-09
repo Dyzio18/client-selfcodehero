@@ -6,9 +6,8 @@ import { userActions } from '../_actions';
 
 function RegisterPage() {
     const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
-        username: '',
+        name: '',
+        email: '',
         password: ''
     });
     const [submitted, setSubmitted] = useState(false);
@@ -29,34 +28,30 @@ function RegisterPage() {
         e.preventDefault();
 
         setSubmitted(true);
-        if (user.firstName && user.lastName && user.username && user.password) {
+        if (user.name && user.email && user.password) {
             dispatch(userActions.register(user));
         }
     }
 
     return (
-        <div className="col-lg-8 offset-lg-2">
+        <div className="container">
+            <div className="row">
+        <div className="col-lg-6 col-sm-12">
             <h2>Register</h2>
-            <form name="form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>First Name</label>
-                    <input type="text" name="firstName" value={user.firstName} onChange={handleChange} className={'form-control' + (submitted && !user.firstName ? ' is-invalid' : '')} />
-                    {submitted && !user.firstName &&
-                        <div className="invalid-feedback">First Name is required</div>
-                    }
-                </div>
-                <div className="form-group">
-                    <label>Last Name</label>
-                    <input type="text" name="lastName" value={user.lastName} onChange={handleChange} className={'form-control' + (submitted && !user.lastName ? ' is-invalid' : '')} />
-                    {submitted && !user.lastName &&
-                        <div className="invalid-feedback">Last Name is required</div>
-                    }
-                </div>
+            <form name="form" className="mt-3 mb-3" onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" value={user.username} onChange={handleChange} className={'form-control' + (submitted && !user.username ? ' is-invalid' : '')} />
-                    {submitted && !user.username &&
-                        <div className="invalid-feedback">Username is required</div>
+                    <input type="text" name="name" value={user.name} onChange={handleChange} className={'form-control' + (submitted && !user.name ? ' is-invalid' : '')} />
+                    {submitted && !user.name &&
+                        <div className="invalid-feedback">Name is required</div>
+                    }
+                </div>
+
+                <div className="form-group">
+                    <label>Email</label>
+                    <input type="text" name="email" value={user.email} onChange={handleChange} className={'form-control' + (submitted && !user.email ? ' is-invalid' : '')} />
+                    {submitted && !user.email &&
+                        <div className="invalid-feedback">Email is required</div>
                     }
                 </div>
                 <div className="form-group">
@@ -66,7 +61,7 @@ function RegisterPage() {
                         <div className="invalid-feedback">Password is required</div>
                     }
                 </div>
-                <div className="form-group">
+                <div className="form-group mt-3 mb-3">
                     <button className="btn btn-primary">
                         {registering && <span className="spinner-border spinner-border-sm mr-1"></span>}
                         Register
@@ -74,6 +69,13 @@ function RegisterPage() {
                     <Link to="/login" className="btn btn-link">Cancel</Link>
                 </div>
             </form>
+        </div>
+
+                <div className="col-lg-4 offset-lg-2 col-sm-12 ">
+                    <img className="img-fluid rounded mx-auto" src='/assets/images/vectors/Big-pencil.png' alt="Logo" />
+                </div>
+
+        </div>
         </div>
     );
 }
