@@ -5,13 +5,12 @@ export const gameActions = {
     getAll,
 };
 
-function getAll(message) {
+function getAll() {
 
-    console.log("== GAME ACTION ==")
+    return dispatch => {
+        gameService.getAll().then(
+            data => dispatch({type: gameConstants.SUCCESS, data})
+        )
+    }
 
-    gameService.getAll().then(
-        resolve => console.log(resolve) 
-    )
-
-    return { type: gameConstants.SUCCESS, message };
 }

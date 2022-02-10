@@ -23,6 +23,7 @@ module.exports = {
         // global app config object
         config: JSON.stringify({
             apiUrl: 'http://localhost:3000/v1'
+            // apiUrl: 'http://api.selfcodehero.com:8899/v1/'
         })
     }
 }

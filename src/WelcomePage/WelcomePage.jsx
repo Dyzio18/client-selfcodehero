@@ -23,7 +23,7 @@ function WelcomePage() {
                     <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
                     <h4 className="alert-heading">Work in progress!</h4>
                     <p className="p-1">
-                        Come back here in a while. You can follow our project on <a href="https://github.com/dyzio18/selfcodehero">github.com/dyzio18/selfcodehero</a>.</p>
+                        Come back here in a while. You can follow project on <a href="https://github.com/dyzio18/selfcodehero">github.com/dyzio18/selfcodehero</a>.</p>
                 </div>
                 <div className="jumbotron">
                     <div className="row">
@@ -32,7 +32,7 @@ function WelcomePage() {
                             <p>Easy to integrate and customize, engage user with gamification engine via REST API. See project <a href="https://github.com/dyzio18/selfcodehero">repository</a>.</p>
                             <div className="row ">
                                 <div className="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-between">
-                                    <a href='/login' type="button" className="btn btn-primary">Play demo game</a>
+                                    <a href='/home' type="button" className="btn btn-primary">Play demo game</a>
                                     <button type="button" className="btn btn-outline-primary ">Docs</button>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${config.apiUrl}/v1/games`, requestOptions).then(handleResponse);
+    return fetch(`${config.apiUrl}/games`, requestOptions).then(handleResponse);
 }
 
 
