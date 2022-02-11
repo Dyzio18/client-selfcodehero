@@ -22,8 +22,8 @@ module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'http://localhost:3000/v1'
-            // apiUrl: 'http://api.selfcodehero.com:8899/v1/'
+            // apiUrl: 'http://localhost:3000/v1'
+            apiUrl: 'https://api.selfcodehero.com/v1'
         })
     }
 }

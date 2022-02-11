@@ -63,7 +63,7 @@ function register(user) {
         localStorage.setItem('user', JSON.stringify(user));
 
         return user;
-    });;
+    });
 }
 
 function update(user) {
