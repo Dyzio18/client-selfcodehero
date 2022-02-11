@@ -6,15 +6,11 @@ import rootReducer from '../_reducers';
 const loggerMiddleware = createLogger();
 
 const composeEnhancers =
-    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
 
-
-const enhancer = composeEnhancers(
-    applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware
-    )
-);
+const enhancer = composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware));
 export const store = createStore(rootReducer, enhancer);
 
 // export const store = createStore(

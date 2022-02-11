@@ -8,7 +8,9 @@
     "license": "MIT",
     "scripts": {
         "build": "webpack --mode production",
-        "start": "webpack-dev-server --open"
+        "start": "webpack-dev-server --open",
+        "lint": "eslint src/**/*.js src/**/*.jsx",
+        "lint:fix": "eslint src/**/*.js src/**/*.jsx --fix"
     },
     "dependencies": {
         "history": "^4.10.1",
@@ -25,8 +27,13 @@
         "@babel/preset-env": "^7.4.3",
         "@babel/preset-react": "^7.0.0",
         "babel-loader": "^8.0.5",
+        "eslint": "^7.0.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.28.0",
         "html-webpack-plugin": "^3.2.0",
         "path": "^0.12.7",
+        "prettier": "^2.0.5",
         "webpack": "^4.29.6",
         "webpack-cli": "^3.3.0",
         "webpack-dev-server": "^3.2.1"

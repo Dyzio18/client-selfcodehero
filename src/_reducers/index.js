@@ -7,11 +7,11 @@ import { alert } from './alert.reducer';
 import { games } from './games.reducer';
 
 const rootReducer = combineReducers({
-    authentication,
-    registration,
-    users,
-    games,
-    alert
+  authentication,
+  registration,
+  users,
+  games,
+  alert,
 });
 
 export default rootReducer;

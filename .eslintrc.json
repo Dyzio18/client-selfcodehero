@@ -1,0 +1,27 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "no-console": "error",
+    "react/jsx-key": "error"
+  }
+}
