@@ -1,7 +1,13 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
 module.exports = {
     mode: 'development',
+    output: {
+        path: path.resolve('dist'),
+        publicPath: '/',
+        filename: 'main.js'
+    },
     resolve: {
         extensions: ['.js', '.jsx']
     },

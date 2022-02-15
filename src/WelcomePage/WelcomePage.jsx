@@ -5,30 +5,20 @@ function WelcomePage() {
   return (
     <div className="content">
       <div className="container">
-        <div className="alert alert-dismissible alert-warning">
-          <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
-          <h4 className="alert-heading">Work in progress!</h4>
-          <p className="p-1">
-            Come back here in a while. You can follow project on{' '}
-            <a href="https://github.com/dyzio18/selfcodehero">github.com/dyzio18/selfcodehero</a>.
-          </p>
-        </div>
+
         <div className="jumbotron">
           <div className="row">
             <div className="col-xl-4 col-lg-6  col-md-8 col-sm-12 pt-lg-5 pt-2">
               <h1>Make your own gamification system from&nbsp;scratch</h1>
               <p>
                 Easy to integrate and customize, engage user with gamification engine via REST API. See project{' '}
-                <a href="https://github.com/dyzio18/selfcodehero">repository</a>.
+                <a target='_blank' href="https://github.com/dyzio18/selfcodehero" rel="noreferrer">repository</a>.
               </p>
               <div className="row ">
-                <div className="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-between">
+                <div className="col-xl-8 col-lg-8 col-md-8 d-flex justify-content-between flex-row">
                   <a href="/home" type="button" className="btn btn-primary">
                     Play demo game
                   </a>
-                  <button type="button" className="btn btn-outline-primary ">
-                    Docs
-                  </button>
                 </div>
               </div>
             </div>
@@ -37,6 +27,17 @@ function WelcomePage() {
             </div>
           </div>
         </div>
+
+
+        <div className="alert alert-dismissible alert-primary">
+          <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
+          <h4 className="alert-heading">Work in progress!</h4>
+          <p className="p-1">
+            Come back here in a while. You can follow project on{' '}
+            <a target='_blank' href="https://github.com/dyzio18/selfcodehero" rel="noreferrer">github.com/dyzio18/selfcodehero</a>.
+          </p>
+        </div>
+
       </div>
 
       <section className="container mt-5">
@@ -73,7 +74,7 @@ function WelcomePage() {
                 <h3 className="card-title">API & demo game</h3>
                 <p className="card-text">
                   The project started in February 2022. The first milestone is the API and demo application launch. Stay up
-                  to date and share your feedback with us.
+                  to date and share your feedback with <a target='_blank' href="https://patryk-nizio.pl" rel="noreferrer">me</a>.
                 </p>
               </div>
             </div>

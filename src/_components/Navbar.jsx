@@ -2,9 +2,9 @@ import React from 'react';
 
 const Navbar = ( ) => {
   return (
-    <div className="header container pb-3 pt-3">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+    <div className="header container-fluid pb-3 pt-3">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container">
           <a className="navbar-brand" href="/">
             SELFCODEHERO
           </a>

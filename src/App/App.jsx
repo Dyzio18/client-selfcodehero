@@ -26,14 +26,14 @@ function App() {
   }, [gameMode]);
 
   return (
-    <div className={gameMode ? 'game-wrapper' : 'page-wrapper'}>
+    <div className={gameMode ? 'app-wrapper' : 'page-wrapper'}>
       {!gameMode && <Navbar />}
-      <div className="page-app container-fluid">
+      <div className="page-app">
         {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
         <Router history={history}>
           <Switch>
             <Route exact path="/" component={WelcomePage} />
-            <PrivateRoute exact path="/home" component={HomePage} />
+            <PrivateRoute path="/home" component={HomePage} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/game/:id" component={GamePage} />
