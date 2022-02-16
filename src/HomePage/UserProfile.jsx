@@ -26,7 +26,7 @@ function UserProfile() {
                     <h5 className="card-title">Hi {user.name}!</h5>
                     <p className="card-text">
                         Welcome 👋  in selfcodehero! <br/>
-                        Create you own game or join to exist. 
+                        Create you own game or join an existing one. 
                     </p>
                 </div>
                 <div className="list-group">

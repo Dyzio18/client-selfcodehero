@@ -14,12 +14,6 @@ function AddGame() {
     }
   }, []);
 
-  const displayUser = () => {
-
-    // eslint-disable-next-line no-console
-    console.log(user);
-  };
-
   const basicGame = () => {
     return {
       name: 'Basic Game',
@@ -62,15 +56,12 @@ function AddGame() {
   };
 
   return (
-    <div className="col-lg-12">
-      <h1>Hi {user.name}!</h1>
-      <div className="row">
-        <div className="col-lg-4">
-          <button className="btn btn-outline-primary" onClick={() => displayUser()}>
-            Show me
-          </button>
+    <div>
+      <div className="row mt-3">
+        <div className="col-md-2 ">
+          Template:
         </div>
-        <div className="col-lg-4">
+        <div className="col-md-6 ">
           <button className="btn btn-outline-primary" onClick={() => createGame({ name: 'Habits Rutine' })}>
             Habits
           </button>
@@ -81,24 +72,40 @@ function AddGame() {
             Team Game
           </button>
         </div>
-        <div className="col-lg-4 d-flex justify-content-end">
+        <div className="col-md-4">
           <button className="btn btn-primary" onClick={() => saveGame()}>
             Add new game
           </button>
         </div>
       </div>
-      <div className="row mt-3">
-        <h3>Dev editor</h3>
-        <textarea
-          ref={jsonEditorRef}
-          id="noter-text-area"
-          name="textarea"
-          value={JSON.stringify(game, null, 2)}
-          cols="50"
-          rows="10"
-          onChange={editorGame}
-        />
+
+      <div className="row">
+
+        <div className="accordion mt-5 col-sm-12 col-md-12" id="devToolsAccordion">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="devTools">
+              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#devToolsCollapse" aria-expanded="false" aria-controls="devToolsCollapse">
+                Details for developers
+              </button>
+            </h2>
+            <div id="devToolsCollapse" className="accordion-collapse collapse" aria-labelledby="devTools" data-bs-parent="#devToolsAccordion">
+              <div className="accordion-body row">
+                <textarea
+                  ref={jsonEditorRef}
+                  id="noter-text-area"
+                  name="textarea"
+                  value={JSON.stringify(game, null, 2)}
+                  cols="50"
+                  rows="20"
+                  onChange={editorGame}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+
     </div>
   );
 }
