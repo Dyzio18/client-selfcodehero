@@ -6,6 +6,7 @@ export const gameService = {
   addGame,
   getMyGames,
   getGame,
+  updateGame,
 };
 
 function getAll() {
@@ -50,6 +51,33 @@ function addGame(param) {
   };
 
   return fetch(`${config.apiUrl}/games`, requestOptions)
+    .then(handleResponse)
+    .then((data) => {
+      return data;
+    });
+}
+
+function updateGame(param) {
+  const headerParam = {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+  };
+
+  Object.assign(headerParam, authHeader());
+
+  delete param.data["id"];
+  delete param.data["isEmailVerified"];
+  delete param.data["players"];
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: headerParam,
+    body: JSON.stringify(param.data),
+  };
+
+  return fetch(`${config.apiUrl}/games/${param.id}`, requestOptions)
     .then(handleResponse)
     .then((data) => {
       return data;

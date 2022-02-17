@@ -56,11 +56,19 @@ function AddGame() {
   };
 
   return (
-    <div>
-      <div className="row mt-3">
-        <div className="col-md-2 ">
-          Template:
+    <>
+      <div className="row mt-3 justify-content-end">
+        <div className="col-md-12 mb-4 ">
+          <button className="btn btn-primary btn-lg" onClick={() => saveGame()}>
+            Save game
+          </button>
         </div>
+
+      </div>
+      <p className=" ">
+        Popular template:
+      </p>
+      <div className="row">
         <div className="col-md-6 ">
           <button className="btn btn-outline-primary" onClick={() => createGame({ name: 'Habits Rutine' })}>
             Habits
@@ -72,11 +80,7 @@ function AddGame() {
             Team Game
           </button>
         </div>
-        <div className="col-md-4">
-          <button className="btn btn-primary" onClick={() => saveGame()}>
-            Add new game
-          </button>
-        </div>
+
       </div>
 
       <div className="row">
@@ -106,7 +110,7 @@ function AddGame() {
       </div>
 
 
-    </div>
+    </>
   );
 }
 

@@ -1,18 +1,20 @@
 import React, { useEffect } from "react"
 import { gameActions } from '../_actions';
-import { AddGame } from '../GameCreatorPage/AddGame';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { PageTitle} from '../_components';
 
 
 function BoardView() {
     const user = useSelector((state) => state.authentication.user.user);
+    const myGames = useSelector((state) => state.games.mygames);
     const games = useSelector((state) => state.games.data);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(gameActions.getAll());
-    }, []);
+            dispatch(gameActions.getMyGames());
+            dispatch(gameActions.getAll());
+    }, [dispatch]);
 
     //   function handleDeleteUser(id) {
     //     dispatch(userActions.delete(id));
@@ -32,7 +34,7 @@ function BoardView() {
         if (data && data.length > 0) {
             gameList = data.map((elem, i) => {
                 return (
-                    <div className="col-sm-12 col-md-6 col-lg-6 col-xl-4" key={`game-id-${i}`}>
+                    <div className="col" key={`game-id-${i}`}>
                         <div className='card mb-3' style={{ maxWidth: '290px' }}>
                             <img src={fakeImg[i % 5]} className='card-img-top' />
                             <div className="card-body ">
@@ -52,7 +54,7 @@ function BoardView() {
 
                             <div className="card-body ">
                                 <Link to={`/game/${elem.id}`} className="d-block card-link btn btn-outline-info m-auto">
-                                    join game 
+                                    join game
                                 </Link>
                                 {elem.owners && elem.owners.includes(user.id) && (
                                     <Link to={`/home/creator/${elem.id}`} className="mt-2 d-block  card-link btn btn-outline-danger m-auto">edit ⚙</Link>
@@ -98,14 +100,18 @@ function BoardView() {
         return (
             <div>
                 {(data && data.length > 8 ? pagination() : '')}
-                <div className="d-flex gx-5 flex-row justify-content-start flex-wrap">{gameList}</div>
+                <div className="row row-cols-1 row-cols-md-3 g-4">{gameList}</div>
             </div>
         );
     };
 
     return (
         <div className="container-fluid">
-            <h1>Games board</h1>
+
+            <PageTitle title="Games" lead={'Go to some adventure! 🗺 🐱‍🏍'} breads={[
+                { title: '🏡', link: '/home' },
+                { title: 'Games', active: true }
+            ]} />
 
             <div className='games-wrapper row'>
                 <ul className="nav nav-tabs">
@@ -127,15 +133,10 @@ function BoardView() {
                 </ul>
                 <div id="myTabContent" className="tab-content mt-3">
                     <div className="tab-pane fade active show" id="mygames">
-                        {games ? displayGames(filterMyGames(games)) : ''}
+                        {myGames ? displayGames(filterMyGames(myGames)) : ''}
                     </div>
                     <div className="tab-pane fade" id="allgames">
                         {games ? displayGames(games) : ''}
-                    </div>
-                    <div className="tab-pane fade" id="addgame">
-                        <section>
-                            <AddGame />
-                        </section>
                     </div>
                 </div>
             </div>

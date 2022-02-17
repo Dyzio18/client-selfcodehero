@@ -3,4 +3,6 @@ export const gameConstants = {
   ADDGAME: 'ADD_GAME',
   GETMYGAMES: 'GET_MY_GAMES',
   GETGAME: 'GET_GAMES',
+  EDITGAME: 'EDIT_GAMES',
+  UPDATEGAME: 'UPDATE_GAMES',
 };

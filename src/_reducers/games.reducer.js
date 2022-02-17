@@ -1,6 +1,13 @@
 import { gameConstants } from '../_constants';
 
-export function games(state = { data: [], mygames: [] }, action) {
+
+const defaultCurrGame = {
+  name: '',
+  desc: '',
+}
+
+export function games(state = { data: [], mygames: [], currgame: defaultCurrGame }, action) {
+
   switch (action.type) {
     case gameConstants.SUCCESS:
       return {
@@ -21,6 +28,16 @@ export function games(state = { data: [], mygames: [] }, action) {
       return {
         ...state,
         currgame: action.data,
+      };
+    case gameConstants.EDITGAME:
+      return {
+        ...state,
+        currgame: Object.assign(state.currgame, action.data),
+      };
+    case gameConstants.UPDATEGAME:
+      return {
+        ...state,
+        currgame: Object.assign(state.currgame, action.data),
       };
     default:
       return state;

@@ -6,6 +6,8 @@ export const gameActions = {
   addGame,
   getMyGames,
   getGame,
+  editGame,
+  updateGame,
 };
 
 function getAll(param) {
@@ -16,7 +18,7 @@ function getAll(param) {
 
 function getMyGames(param) {
   return (dispatch) => {
-    gameService.getMyGames(param).then((data) => dispatch({ type: gameConstants.GETMYGAMES, data: data.results }));
+    gameService.getMyGames(param).then((data) => dispatch({ type: gameConstants.GETMYGAMES, data }))
   };
 }
 
@@ -29,5 +31,15 @@ function getGame(param) {
 function addGame(param) {
   return (dispatch) => {
     gameService.addGame(param).then((data) => dispatch({ type: gameConstants.ADDGAME, data }));
+  };
+}
+
+function editGame(param) {
+  return (dispatch) => dispatch({ type: gameConstants.EDITGAME, data: param });
+}
+
+function updateGame(param) {
+  return (dispatch) => {
+    gameService.updateGame(param).then((data) => dispatch({ type: gameConstants.UPDATEGAME, data }));
   };
 }
