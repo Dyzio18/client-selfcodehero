@@ -1,4 +1,5 @@
 import React from "react"
+import {PageTitle} from '../_components';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from "react-router-dom";
 
@@ -10,8 +11,11 @@ function SettingsView() {
 
     return (
         <div className="container-fluid">
-            <h1>Settings</h1>
-            <h3 className='lead'> Change your account settings</h3>
+            <PageTitle title="Settings" lead={'Change your account settings 🛠'} breads={[
+                { title: '🏡', link: '/home' },
+                { title: 'Settings', active: true }
+            ]} />
+
         </div>
     )
 

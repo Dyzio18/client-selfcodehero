@@ -1,12 +1,17 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import { PageTitle } from '../_components/'
 
 function DashboardView() {
 
     return (
         <div className="container-fluid">
-            <h1>Dashboard</h1>
-            <h3 className='lead'> Now, you are superhero! 🐱‍🏍</h3>
+
+            <PageTitle title="Dashboard" lead={'Now, you are superhero! 🐱‍🏍'} breads={[
+                { title: '🏡', link: '/home' },
+                { title: 'Dashboard', active: true }
+            ]} />
+
             <div className="container">
                 <div className="row justify-content-start mt-5">
                     <div className="col-md-4 col-sm-6 col-xs-12">
@@ -16,7 +21,7 @@ function DashboardView() {
                                 <h1 className="card-title">➕ Add game</h1>
                                 <p className="card-text">
                                     Create and manage games. Build new game for you or society.
-                                    Have fun and develop.
+                                    Have fun!
                                 </p>
                             </div>
                             <div className="card-body">
