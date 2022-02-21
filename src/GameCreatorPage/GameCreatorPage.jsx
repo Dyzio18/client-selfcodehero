@@ -6,6 +6,7 @@ import { gameActions } from '../_actions';
 import { PageTitle } from '../_components/'
 import { SaveGame } from "./SaveGame";
 import { UpdateGame } from "./UpdateGame";
+import BadgeManager from "./BadgeManager";
 
 function GameCreatorPage() {
     const { id } = useParams();
@@ -13,11 +14,14 @@ function GameCreatorPage() {
     const game = useSelector((state) => state.games.currgame || {});
     const [name, setName] = useState(game && game.name ? game.name : '');
     const [desc, setDesc] = useState(game && game.desc ? game.desc : '');
+    const [settings, setSettings] = useState(game && game.settings ? game.settings : {});
+    const [loadGameFlag, setLoadGameFlag] = useState(false);
     let editMode = id && game ? true : false;
 
     useEffect(() => {
-        if (id && game && game.name === name) {
+        if (id && game && game.name === name && loadGameFlag === false) {
             dispatch(gameActions.getGame({ id }))
+            setLoadGameFlag(true);
         } if (game) {
             setName(game.name);
             setDesc(game.desc);
@@ -34,8 +38,12 @@ function GameCreatorPage() {
         } else if (name == 'desc') {
             setDesc(value);
         }
-
         dispatch(gameActions.editGame({ [name]: value }));
+    }
+
+    const handleSettingsPublic = (e) => {
+        // console.log(e.target.checked);
+        dispatch(gameActions.editGame({ settings: { public: e.target.checked } }));
     }
 
     return (
@@ -46,12 +54,8 @@ function GameCreatorPage() {
                 { title: editMode ? 'edit' : 'new game', active: true }
             ]} />
             <div className="row mt-5">
-                {/* <p className="text-warning">
-                    name: {name} <br /> desc: {desc} <br />
-                    {game.name} @ {game.desc}
-                </p> */}
                 <div className="col-lg-6 col-md-12 col-sm-12">
-                    <h3 className="lead">Name and describe game</h3>
+                    <h3 className="lead">Game story</h3>
                     <div className="form-group">
                         <div className="form-floating mb-3">
                             <input
@@ -76,10 +80,15 @@ function GameCreatorPage() {
                                 value={desc || ''} />
                             <label htmlFor="descGameInput">Short description</label>
                         </div>
-                        <h3 className="lead mt-3">Choose game settings</h3>
+                        <h3 className="lead mt-3">Game settings</h3>
                         <div className="form-group">
                             <div className="form-check form-switch">
-                                <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked" />
+                                <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    id="flexSwitchCheckChecked"
+                                    onChange={handleSettingsPublic}
+                                />
                                 <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
                                     Public game
                                     <p className="text-success">You can share the game with your friends via link</p>
@@ -87,20 +96,30 @@ function GameCreatorPage() {
                             </div>
                         </div>
                     </div>
-
-                    <div className="pt-4 pb-3 ">
-                        <h3>Campaign creator</h3>
-                        <button className="btn btn btn-outline-info">Setting</button>
-                        <button className="btn btn btn-outline-info">Missions</button>
-                        <button className="btn btn btn-outline-info">Badges</button>
-                        <button className="btn btn btn-outline-info">Players</button>
-                    </div>
                 </div>
                 <div className="col-lg-6 col-md-12 col-sm-12">
                     <div className="pt-1">
                         {editMode ? <UpdateGame /> : <SaveGame />}
                         <GamePreview />
-                        {/* <AddGame /> */}
+                    </div>
+                </div>
+            </div>
+
+            <div className="row pt-4 pb-3 ">
+                <div className="col">
+                    <div className="mt-2 mb-4">
+                        <h2>Missions</h2>
+                        <button className="btn btn btn-outline-info">Add mission</button>
+                    </div>
+
+                    <div className="mt-2 mb-4">
+                        <h2>Badges</h2>
+                        <BadgeManager />
+                    </div>
+
+                    <div className="mt-2 mb-4">
+                        <h2>Players</h2>
+                        <button className="btn btn btn-outline-info">Manage Player</button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const Navbar = ( ) => {
+const Navbar = () => {
+
+  const loggedIn = useSelector((store) => store.authentication.loggedIn);
+
   return (
     <div className="header container-fluid pb-3 pt-3">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,24 +47,19 @@ const Navbar = ( ) => {
                   FAQ
                 </a>
               </li>
-              {/* <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                                <div className="dropdown-menu">
-                                    <a className="dropdown-item" href="#">Action</a>
-                                    <a className="dropdown-item" href="#">Another action</a>
-                                    <a className="dropdown-item" href="#">Something else here</a>
-                                    <div className="dropdown-divider" />
-                                    <a className="dropdown-item" href="#">Separated link</a>
-                                </div> 
-                            </li> */}
             </ul>
             <form className="d-flex">
-              {/* <input className="form-control me-sm-2" type="text" placeholder="Search" />
-                            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> */}
-              <a className="btn btn-primary" href="/login">
-                Login
-                <span className="visually-hidden">(current)</span>
-              </a>
+              {loggedIn ? (
+                <a className="btn btn-primary" href="/home">
+                  Account
+                  <span className="visually-hidden">(current)</span>
+                </a>
+              ) : (
+                  <a className="btn btn-primary" href="/login">
+                    Login
+                    <span className="visually-hidden">(current)</span>
+                  </a>
+              )}
             </form>
           </div>
         </div>

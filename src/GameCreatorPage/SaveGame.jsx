@@ -8,6 +8,9 @@ function SaveGame() {
 
     const saveGame = () => {
         const data = game;
+
+        if(data.name == '') return;
+
         dispatch(gameActions.addGame(data));
     };
 
