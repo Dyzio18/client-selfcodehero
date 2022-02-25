@@ -14,7 +14,7 @@ function GameCreatorPage() {
     const game = useSelector((state) => state.games.currgame || {});
     const [name, setName] = useState(game && game.name ? game.name : '');
     const [desc, setDesc] = useState(game && game.desc ? game.desc : '');
-    const [settings, setSettings] = useState(game && game.settings ? game.settings : {});
+    // const [settings, setSettings] = useState(game && game.settings ? game.settings : {});
     const [loadGameFlag, setLoadGameFlag] = useState(false);
     let editMode = id && game ? true : false;
 

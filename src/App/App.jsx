@@ -29,7 +29,24 @@ function App() {
     <div className={gameMode ? 'app-wrapper' : 'page-wrapper'}>
       {!gameMode && <Navbar />}
       <div className="page-app">
-        {alert.message && <div className={`alert ${alert.type}`}>{alert.message}</div>}
+        {alert.message && (
+
+          <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: '11', }}>
+            <div className="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+              <div className="toast-header ">
+                <strong className="me-auto">{alert.title}</strong>
+                <small>1 mins ago</small>
+                <button type="button" className="btn-close ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true"></span>
+                </button>
+              </div>
+              <div className="toast-body">
+                {alert.message}
+              </div>
+            </div>
+          </div>
+
+        )}
         <Router history={history}>
           <Switch>
             <Route exact path="/" component={WelcomePage} />
@@ -42,7 +59,7 @@ function App() {
         </Router>
       </div>
       {!gameMode && <Footer />}
-    </div>
+    </div >
   );
 }
 

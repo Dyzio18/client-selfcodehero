@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import {gameActions} from '../_actions';
+import { gameActions, alertActions } from '../_actions';
 
 function UpdateGame() {
     const { id } = useParams();
@@ -10,7 +10,9 @@ function UpdateGame() {
 
     const updateGame = () => {
         const data = game;
-        dispatch(gameActions.updateGame({id, data}));
+        dispatch(gameActions.updateGame({ id, data }));
+        dispatch(alertActions.success(`${game.name} game has been updated`, '✅ Update game'));
+
     };
 
     return (

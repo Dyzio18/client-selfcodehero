@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { gameActions } from '../_actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import { PageTitle} from '../_components';
+import { PageTitle } from '../_components';
 
 
 function BoardView() {
@@ -12,8 +12,8 @@ function BoardView() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-            dispatch(gameActions.getMyGames());
-            dispatch(gameActions.getAll());
+        dispatch(gameActions.getMyGames());
+        dispatch(gameActions.getAll());
     }, [dispatch]);
 
     //   function handleDeleteUser(id) {
@@ -28,15 +28,36 @@ function BoardView() {
         return arr;
     };
 
+    const pagination = () => {
+        return (
+            <div>
+                <ul className="pagination justify-content-center">
+                    <li className="page-item disabled">
+                        <a className="page-link" href="#">&laquo;</a>
+                    </li>
+                    <li className="page-item active">
+                        <a className="page-link" href="#">1</a>
+                    </li>
+                    <li className="page-item">
+                        <a className="page-link" href="#">2</a>
+                    </li>
+                    <li className="page-item">
+                        <a className="page-link" href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        )
+    }
+
     const displayGames = (data) => {
         let gameList = <>Empty</>;
-        let fakeImg = ['/assets/images/vectors/Cat-photo.png', '/assets/images/vectors/Cat-lick.png', '/assets/images/vectors/Cat-sleep.png', '/assets/images/vectors/Plants.png', '/assets/images/vectors/Summer.png', '/assets/images/vectors/Listen-podcast.png']
+        // let fakeImg = ['/assets/images/vectors/Cat-photo.png', '/assets/images/vectors/Cat-lick.png', '/assets/images/vectors/Cat-sleep.png', '/assets/images/vectors/Plants.png', '/assets/images/vectors/Summer.png', '/assets/images/vectors/Listen-podcast.png']
         if (data && data.length > 0) {
             gameList = data.map((elem, i) => {
                 return (
                     <div className="col" key={`game-id-${i}`}>
                         <div className='card mb-3' style={{ maxWidth: '290px' }}>
-                            <img src={fakeImg[i % 5]} className='card-img-top' />
+                            {/* <img src={fakeImg[i % 5]} className='card-img-top' /> */}
                             <div className="card-body ">
                                 <h4 className="card-title">{elem.name || 'none'}</h4>
                                 <p className="card-text">{elem.desc}</p>
@@ -67,43 +88,13 @@ function BoardView() {
             });
         }
 
-        const pagination = () => {
-            return (
-                <div>
-                    <ul className="pagination justify-content-center">
-                        <li className="page-item disabled">
-                            <a className="page-link" href="#">&laquo;</a>
-                        </li>
-                        <li className="page-item active">
-                            <a className="page-link" href="#">1</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">2</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">3</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">4</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">5</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href="#">&raquo;</a>
-                        </li>
-                    </ul>
-                </div>
-            )
-        }
-
         return (
             <div>
-                {(data && data.length > 8 ? pagination() : '')}
                 <div className="row row-cols-1 row-cols-md-3 g-4">{gameList}</div>
             </div>
         );
     };
+
 
     return (
         <div className="container-fluid">
@@ -114,23 +105,30 @@ function BoardView() {
             ]} />
 
             <div className='games-wrapper row'>
-                <ul className="nav nav-tabs">
-                    <li className="nav-item">
-                        <a className="nav-link active h2" data-bs-toggle="tab" href="#mygames">
-                            My games
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link h2" data-bs-toggle="tab" href="#allgames">
-                            All games
-                        </a>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link h2 btn" to={'/home/creator'}>
-                            ➕ New game
-                        </Link>
-                    </li>
-                </ul>
+                <div className="col-8">
+
+                    <ul className="nav nav-tabs">
+                        <li className="nav-item">
+                            <a className="nav-link active h2" data-bs-toggle="tab" href="#mygames">
+                                My games
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link h2" data-bs-toggle="tab" href="#allgames">
+                                All games
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link h2 btn" to={'/home/creator'}>
+                                ➕ New game
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <div className="col-4">
+                    {(games && games.length > 6 ? pagination() : '')}
+
+                </div>
                 <div id="myTabContent" className="tab-content mt-3">
                     <div className="tab-pane fade active show" id="mygames">
                         {myGames ? displayGames(filterMyGames(myGames)) : ''}

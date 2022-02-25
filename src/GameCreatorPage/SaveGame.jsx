@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {gameActions} from '../_actions';
+import { gameActions, alertActions} from '../_actions';
 
 function SaveGame() {
     const game = useSelector((store) => store.games.currgame)
@@ -12,6 +12,7 @@ function SaveGame() {
         if(data.name == '') return;
 
         dispatch(gameActions.addGame(data));
+        dispatch(alertActions.success(`You add new game ${data.name}`, '🆕 New game'));
     };
 
     return (

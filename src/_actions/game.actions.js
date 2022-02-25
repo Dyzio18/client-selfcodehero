@@ -34,6 +34,11 @@ function addGame(param) {
   };
 }
 
+/**
+ * Edit game internal app, without connection with API
+ * @param {Object} param - game object, save in state: games.currgame 
+ * @returns 
+ */
 function editGame(param) {
   return (dispatch) => dispatch({ type: gameConstants.EDITGAME, data: param });
 }

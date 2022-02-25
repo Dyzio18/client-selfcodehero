@@ -1,9 +1,16 @@
-import { gameConstants } from '../_constants';
+import { badgeConstants, gameConstants } from '../_constants';
 
 
 const defaultCurrGame = {
   name: '',
   desc: '',
+}
+
+const deleteBadge = (state, hash) => {
+  let badges = state.currgame.badges.filter((elem) => {
+    return (elem && elem.hash !== hash)
+  });
+  return badges;
 }
 
 export function games(state = { data: [], mygames: [], currgame: defaultCurrGame }, action) {
@@ -38,6 +45,16 @@ export function games(state = { data: [], mygames: [], currgame: defaultCurrGame
       return {
         ...state,
         currgame: Object.assign(state.currgame, action.data),
+      };
+    case badgeConstants.ADD_BADGE:
+      return {
+        ...state,
+        currgame: Object.assign(state.currgame, { badges: [...state.currgame.badges, action.data] }),
+      };
+    case badgeConstants.DELETE_BADGE:
+      return {
+        ...state,
+        currgame: Object.assign(state.currgame, { badges: deleteBadge(state, action.data) }),
       };
     default:
       return state;
