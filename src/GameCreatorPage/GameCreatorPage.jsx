@@ -7,6 +7,7 @@ import { PageTitle } from '../_components/'
 import { SaveGame } from "./SaveGame";
 import { UpdateGame } from "./UpdateGame";
 import BadgeManager from "./BadgeManager";
+import MissionManager from "./MissionManager";
 
 function GameCreatorPage() {
     const { id } = useParams();
@@ -109,7 +110,7 @@ function GameCreatorPage() {
                 <div className="col">
                     <div className="mt-2 mb-4">
                         <h2>Missions</h2>
-                        <button className="btn btn btn-outline-info">Add mission</button>
+                        <MissionManager />
                     </div>
 
                     <div className="mt-2 mb-4">

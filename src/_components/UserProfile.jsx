@@ -21,7 +21,7 @@ function UserProfile() {
     
     return (
         <div className='d-flex justify-content-center m-auto mb-4 mt-4'>
-            <div className="card border-primary " style={{ minWidth: '220px', maxWidth: '90%' }}>
+            <div className="card border-primary " style={{ minWidth: '220px', maxWidth: '100%' }}>
                 <div className="card-body">
                     <h5 className="card-title">Hi {user.name}!</h5>
                     <p className="card-text">

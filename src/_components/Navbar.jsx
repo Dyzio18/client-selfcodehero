@@ -7,9 +7,9 @@ const Navbar = () => {
   const loggedIn = useSelector((store) => store.authentication.loggedIn);
 
   return (
-    <div className="header container-fluid pb-3 pt-3">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container">
+    <div className="header p-3">
+      <nav className="navbar navbar-dark navbar-expand-lg shadow-lg mb-2 rounded">
+        <div className="container-fluid ">
           <a className="navbar-brand" href="/">
             SELFCODEHERO
           </a>

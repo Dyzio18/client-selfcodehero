@@ -4,6 +4,9 @@ import { badgeConstants, gameConstants } from '../_constants';
 const defaultCurrGame = {
   name: '',
   desc: '',
+  badges: [],
+  missions: [],
+  players: [],
 }
 
 const deleteBadge = (state, hash) => {

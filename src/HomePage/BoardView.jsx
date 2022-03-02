@@ -3,18 +3,31 @@ import { gameActions } from '../_actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { PageTitle } from '../_components';
+import { Empty } from '../_components';
 
+// function usePrevious(value) {
+//   const ref = useRef();
+//   useEffect(() => {
+//     ref.current = value;
+//   },[value]);
+//   return ref.current;
+// }
 
 function BoardView() {
     const user = useSelector((state) => state.authentication.user.user);
     const myGames = useSelector((state) => state.games.mygames);
     const games = useSelector((state) => state.games.data);
+    // const prevGames = usePrevious(games);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(gameActions.getMyGames());
-        dispatch(gameActions.getAll());
-    }, [dispatch]);
+        if(!myGames){
+            dispatch(gameActions.getMyGames());
+        }
+        if(!games){
+            dispatch(gameActions.getAll());
+        }
+    }, [myGames, games]);
 
     //   function handleDeleteUser(id) {
     //     dispatch(userActions.delete(id));
@@ -50,7 +63,7 @@ function BoardView() {
     }
 
     const displayGames = (data) => {
-        let gameList = <>Empty</>;
+        let gameList = <Empty />;
         // let fakeImg = ['/assets/images/vectors/Cat-photo.png', '/assets/images/vectors/Cat-lick.png', '/assets/images/vectors/Cat-sleep.png', '/assets/images/vectors/Plants.png', '/assets/images/vectors/Summer.png', '/assets/images/vectors/Listen-podcast.png']
         if (data && data.length > 0) {
             gameList = data.map((elem, i) => {

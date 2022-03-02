@@ -15,7 +15,7 @@ export default function BadgeManager() {
 
     const badges = useSelector((state) => state.games.currgame.badges);
 
-    const onEmojiClick = (emojiObject) => {
+    const onEmojiClick = (_e, emojiObject) => {
         setUrl(emojiObject.emoji);
     };
 
@@ -51,7 +51,7 @@ export default function BadgeManager() {
                     Add Badge
                 </button> */}
                 <button type="button" className="btn btn-outline-primary" onClick={() => toggleEditMode()}>
-                    Add Badge
+                    Add badge
                 </button>
 
 

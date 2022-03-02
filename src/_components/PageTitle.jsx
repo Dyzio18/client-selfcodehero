@@ -40,7 +40,7 @@ function PageTitle({ title, lead, breads = [] }) {
     return (
         <div className="row">
             <div className="col-10 col-md-8 col-sm-12">
-                {title && (<h1>{title}</h1>)}
+                {title && (<h1 className="bold h1">{title}</h1>)}
                 <p className='lead'> {lead}</p>
             </div>
             <div className="col col-md-4 col-sm-12 pt-2">

@@ -10,6 +10,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { GamePage } from '../GamePage';
+import { Aside } from '../_components/Aside';
 
 function App() {
   const alert = useSelector((state) => state.alert);
@@ -25,10 +26,18 @@ function App() {
     });
   }, [gameMode]);
 
-  return (
+  return (<Router history={history}>
+
     <div className={gameMode ? 'app-wrapper' : 'page-wrapper'}>
       {!gameMode && <Navbar />}
       <div className="page-app">
+
+        <Aside />
+        <button className="btn float-end btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+          ❔
+          <i className="bi bi-arrow-right-square-fill fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
+        </button>
+
         {alert.message && (
 
           <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: '11', }}>
@@ -47,19 +56,18 @@ function App() {
           </div>
 
         )}
-        <Router history={history}>
-          <Switch>
-            <Route exact path="/" component={WelcomePage} />
-            <PrivateRoute path="/home" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
-            <Route path="/game/:id" component={GamePage} />
-            <Redirect from="*" to="/" />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route exact path="/" component={WelcomePage} />
+          <PrivateRoute path="/home" component={HomePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route path="/game/:id" component={GamePage} />
+          <Redirect from="*" to="/" />
+        </Switch>
       </div>
       {!gameMode && <Footer />}
     </div >
+  </Router>
   );
 }
 

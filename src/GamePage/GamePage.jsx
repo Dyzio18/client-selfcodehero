@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { gameActions } from '../_actions';
+import { BadgeList } from '../_components/BadgeList';
 
 function GamePage() {
     const params = useParams();
@@ -20,21 +21,6 @@ function GamePage() {
             </div>
         );
     }
-
-    const displayBadge = () => {
-        const badgesList = [];
-
-        // console.log(game);
-        game.badges.map((elem) => {
-            badgesList.push(<div key={elem.hash}>
-                <span className="badge bg-success">
-                {elem.name} ✅ {elem.hash}
-                </span>
-            </div>);
-        });
-
-        return <div className='row'>{badgesList}</div>;
-    };
 
     return (
         <div className="container-fluid">
@@ -109,14 +95,14 @@ function GamePage() {
                         <div className="tab-pane fade active show" id="game-missions">
                             <h1>MISSIONS</h1>
                             <p>
-                                Food truck fixie locavore, accusamus mcsweeney marfa nulla single-origin coffee squid. Exercitation +1
-                                labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-                                twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum
-                                PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                                
+                                <h2>MY MISSION 🎪</h2>
                             </p>
                         </div>
                         <div className="tab-pane fade" id="game-badges">
-                            {game.badges && displayBadge()}
+                            <div className="row">
+                                {game.badges && <BadgeList list={game.badges} />}
+                            </div>
                         </div>
                         <div className="tab-pane fade" id="game-players">
                             <h1>PLAYERS</h1>
