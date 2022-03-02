@@ -1,5 +1,4 @@
-import { badgeConstants, gameConstants } from '../_constants';
-
+import { badgeConstants, gameConstants, missionConstants } from '../_constants';
 
 const defaultCurrGame = {
   name: '',
@@ -58,6 +57,16 @@ export function games(state = { data: [], mygames: [], currgame: defaultCurrGame
       return {
         ...state,
         currgame: Object.assign(state.currgame, { badges: deleteBadge(state, action.data) }),
+      };
+    case missionConstants.ADD_MISSION:
+      return {
+        ...state,
+        currgame: Object.assign(state.currgame, { missions: [...state.currgame.missions, action.data] }),
+      };
+    case missionConstants.DELETE_MISSION:
+      return {
+        ...state,
+        currgame: Object.assign(state.currgame, { missions: deleteBadge(state, action.data) }),
       };
     default:
       return state;

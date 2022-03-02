@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { alertActions, badgeActions } from '../_actions';
+import { alertActions, missionActions } from '../_actions';
 import { useDispatch } from 'react-redux';
 
-function BadgeItem({ name, desc, url, hash }) {
+function MissionItem({ name, desc, url, hash }) {
     const dispatch = useDispatch();
 
-    const deleteBadge = () => {
-        dispatch(badgeActions.deleteBadge(hash))
-        dispatch(alertActions.success(`You delete badge ${name}`, '❌ Delete badge'));
+    const deleteMission = () => {
+        dispatch(missionActions.deleteMission(hash))
+        dispatch(alertActions.success(`You delete mission ${name}`, '❌ Delete mission'));
     }
 
     return (
-        <div className="col" data-badge-id={hash}>
+        <div className="col" data-mission-id={hash}>
             <div className={`card h-100 border-${hash ? 'primary' : 'success'}`}>
                 <div className="card-header">
                     <span style={{
@@ -35,7 +35,7 @@ function BadgeItem({ name, desc, url, hash }) {
                                 <button id="btnGroupDrop1" type="button" className="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                 <div className="dropdown-menu" aria-labelledby="btnGroupDrop1" >
                                     <a className="dropdown-item" href="#">Edit</a>
-                                    <button className="btn dropdown-item" onClick={() => deleteBadge()}>Delete</button>
+                                    <button className="btn dropdown-item" onClick={() => deleteMission()}>Delete</button>
                                 </div>
                             </div>
                         )}
@@ -46,30 +46,30 @@ function BadgeItem({ name, desc, url, hash }) {
                     <p className="card-text">{desc || ''}</p>
                 </div>
                 <div className="card-footer text-muted small">
-                    {hash || 'badge not saved'}
+                    {hash || 'mission not saved'}
                 </div>
             </div>
         </div>
     )
 }
 
-function BadgeList({ list }) {
+function MissionList({ list }) {
     if (!list || list.length === 0) return (<> </>);
 
-    const badgeList = list.map((elem, i) => <BadgeItem key={i} name={elem.name} desc={elem.desc} url={elem.url} hash={elem.hash || ''}/>)
+    const missionList = list.map((elem, i) => <MissionItem key={i} name={elem.name} desc={elem.desc} url={elem.url} hash={elem.hash || ''}/>)
 
     return (
-        <div className="row row-cols-1 row-cols-md-3 row-cols-md-4 g-4">
-            {badgeList}
+        <div className="row row-cols-1 row-cols-md-3 row-cols-md-4  g-3">
+            {missionList}
         </div>
     )
 }
 
-BadgeList.propTypes = {
+MissionList.propTypes = {
     list: PropTypes.array,
 }
 
-BadgeItem.propTypes = {
+MissionItem.propTypes = {
     name: PropTypes.string,
     desc: PropTypes.string,
     url: PropTypes.string,
@@ -77,4 +77,4 @@ BadgeItem.propTypes = {
     keyCount: PropTypes.number,
 }
 
-export { BadgeList }
+export { MissionList }

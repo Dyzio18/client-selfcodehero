@@ -21,13 +21,13 @@ function BoardView() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(!myGames){
+        if (myGames) {
             dispatch(gameActions.getMyGames());
         }
-        if(!games){
+        if (games) {
             dispatch(gameActions.getAll());
         }
-    }, [myGames, games]);
+    }, []);
 
     //   function handleDeleteUser(id) {
     //     dispatch(userActions.delete(id));
@@ -69,21 +69,11 @@ function BoardView() {
             gameList = data.map((elem, i) => {
                 return (
                     <div className="col" key={`game-id-${i}`}>
-                        <div className='card mb-3' style={{ maxWidth: '290px' }}>
+                        <div className='card mb-3 h-100 border-info' style={{ maxWidth: '290px' }}>
                             {/* <img src={fakeImg[i % 5]} className='card-img-top' /> */}
                             <div className="card-body ">
-                                <h4 className="card-title">{elem.name || 'none'}</h4>
+                                <h4 className="card-title">{elem.name || ''}</h4>
                                 <p className="card-text">{elem.desc}</p>
-
-                                <span className="btn btn-dark m-1">
-                                    Missions <span className="badge bg-dark"> {elem.missions.length}</span>
-                                </span>
-                                <span className="btn btn-dark m-1">
-                                    Badges <span className="badge bg-primary"> {elem.badges.length}</span>
-                                </span>
-                                <span className="btn btn-dark m-1">
-                                    Players <span className="badge bg-dark"> {elem.players.length}</span>
-                                </span>
                             </div>
 
                             <div className="card-body ">
@@ -94,7 +84,27 @@ function BoardView() {
                                     <Link to={`/home/creator/${elem.id}`} className="mt-2 d-block  card-link btn btn-outline-danger m-auto">edit ⚙</Link>
                                 )}
                             </div>
-
+                            <div className="card-body ">
+                                <span className="badge rounded-pill bg-dark m-1 position-relative">
+                                    Quests 
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                                        {elem.missions.length}
+                                        <span className="visually-hidden">unread messages</span>
+                                    </span>
+                                </span>
+                                <span className="badge rounded-pill bg-dark m-1 position-relative">
+                                    Awards
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                                        {elem.badges.length}
+                                    </span>
+                                </span>
+                                <span className="badge rounded-pill bg-dark m-1 position-relative">
+                                    Players
+                                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                                        {elem.players.length}
+                                    </span>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 );
@@ -103,7 +113,7 @@ function BoardView() {
 
         return (
             <div>
-                <div className="row row-cols-1 row-cols-md-3 g-4">{gameList}</div>
+                <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4  g-4">{gameList}</div>
             </div>
         );
     };
